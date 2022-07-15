@@ -2,18 +2,11 @@ package processor
 
 import (
 	"fmt"
-   	"io/ioutil"
+	"io/ioutil"
 
 	"github.com/flashmob/go-guerrilla/backends"
 	"github.com/flashmob/go-guerrilla/mail"
-	"google.golang.org/grpc"
 )
-
-type BlazeForwarderProcessor struct {
-	compressorConnPool *grpc.ClientConn
-	failOverConnPool   *grpc.ClientConn
-}
-
 
 var FileWriter = func() backends.Decorator {
 	initializer := backends.InitializeWith(func(backendConfig backends.BackendConfig) error {
@@ -32,8 +25,8 @@ var FileWriter = func() backends.Decorator {
 				var stringer fmt.Stringer
 				stringer = e
 				data := []byte(stringer.String())
-				key := fmt.Sprintf("%s%s","/tmp/",e.QueuedId)
-				err := ioutil.WriteFile(key, data,0666)
+				key := fmt.Sprintf("%s%s", "/tmp/", e.QueuedId)
+				err := ioutil.WriteFile(key, data, 0666)
 				fmt.Println(err)
 				return p.Process(e, task)
 			} else {

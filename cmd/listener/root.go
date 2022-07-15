@@ -6,9 +6,9 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "Blaze SMTP Listener",
-	Short: "SMTP server for Netcore",
-	Long:  `SMTP Server for Netcore,Part of Blaze MTA Project`,
+	Use:   "SMTP Listener",
+	Short: "SMTP server",
+	Long:  `SMTP Server`,
 	Run:   nil,
 }
 
